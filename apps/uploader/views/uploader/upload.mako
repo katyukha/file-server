@@ -1,4 +1,4 @@
-<%inherit file='base.html'/>
+<%inherit file='/base.mako'/>
 
 <%block name='content'>
 % if file_loaded:

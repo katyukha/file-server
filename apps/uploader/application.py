@@ -1,23 +1,17 @@
 #!/usr/bin/env python
 import bottle
-from bottle.ext import sqlalchemy
-from models import Base
+import bottle.ext.redis
 
-from settings import SQLALCHEMY_ENGINE
+from settings import REDIS_DB_CONF
 
-from sqlalchemy import create_engine
+import os.path
 
-engine = create_engine(SQLALCHEMY_ENGINE, echo=True)
+APP_DIR = os.path.abspath(os.path.dirname(__file__))
+
+bottle.TEMPLATE_PATH.append( os.path.join(APP_DIR, 'views'))
 
 uploader = bottle.Bottle()
-plugin = sqlalchemy.Plugin(
-    engine, # SQLAlchemy engine created with create_engine function.
-    Base.metadata, # SQLAlchemy metadata, required only if create=True.
-    keyword='db', # Keyword used to inject session database in a route (default 'db').
-    create=True, # If it is true, execute `metadata.create_all(engine)` when plugin is applied (default False).
-    commit=True, # If it is true, plugin commit changes after route is executed (default True).
-    use_kwargs=True# If it is true and keyword is not defined, plugin uses **kwargs argument to inject session database (default False).
-)
+redis = bottle.ext.redis.RedisPlugin(**REDIS_DB_CONF)
 
-uploader.install(plugin)
+uploader.install(redis)
 
