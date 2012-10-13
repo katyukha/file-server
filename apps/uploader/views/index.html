@@ -1,0 +1,27 @@
+<%inherit file='base.html'/>
+
+<%block name='content'>
+    <h4>Select file to load on server:</h4>
+    <form action="${url('upload')}" method="post" enctype="multipart/form-data">
+        <input type="text" name="name" /><br/>
+        <input type="file" name="data" /></br>
+        <input type="textarea" name="comment" /></br>
+        <input type="submit" name="submit"/>
+    </form>
+
+    % if files:
+        <hr>
+        <h4>Uploaded files</h4>
+        <div id="#file-list">
+        % for file in files:
+            <div class="file">
+                <a href="[[ url('file', filename = file.filename ]]">${ file.name }</a>
+                % if file.comment:
+                    <span class="comment-label">Comment:</span><br/>
+                    <div class="comment">${ file.comment }</div>
+                % endif
+            </div>
+        % endfor
+        </div>
+    % endif
+</%block>
