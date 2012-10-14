@@ -39,6 +39,7 @@ $main-border-color: #AEBCC5;
 
     width: $width;
     margin: 0 auto;
+    height: auto !important;
 
     #content, #sidebar {
         padding: 20px;

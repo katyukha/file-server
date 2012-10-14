@@ -24,5 +24,10 @@ if __name__=='__main__':
     debug(args.debug)
     run(host=args.host, port=args.port, server=args.server, reloader=args.reload)
 else:
+    # Change working directory so relative paths (and template lookup) work again
+    import os
+    import os.path
+    os.chdir(os.path.dirname(__file__))
+
     from bottle import app
     application = app()
