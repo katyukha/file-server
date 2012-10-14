@@ -1,0 +1,109 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+@import "compass/reset";
+@import "compass/layout/sticky-footer";
+@import "compass/css3";
+
+/* variables */
+$width: 960px;
+$footer-height: 54px;
+$main-background-color: #CEECF5;
+$main-border-color: #AEBCC5;
+
+@include sticky-footer($footer-height, "#page", "#content-wraper", "#footer-wraper");
+
+#page {
+    /* not using 'margin: 0 auto -$footer-height;' because of sticky-footer adds already
+       'margin-bottom: -$footer-height;' which conflicts with this one. */
+    margin-left: auto;
+    margin-right: auto;
+
+    width: $width;
+
+    #header {
+        padding: 20px;
+    }
+}
+
+#height-helper1 {
+    height: $footer-height;
+}
+
+#content-wraper {
+    @include display-box;
+    @include box-orient(horizontal);
+    @include box-align(stretch);
+
+    width: $width;
+    margin: 0 auto;
+
+    #content, #sidebar {
+        padding: 20px;
+
+        border: medium dotted $main-border-color;
+        @include border-radius(13px);
+        margin: 5px;
+    }
+    
+    #content {
+        @include box-flex(4);
+    }
+
+    #sidebar {
+        @include box-flex(1);
+    }
+
+}
+
+#footer-wraper {
+    text-align: center;
+    padding-top: 10px;
+
+    #footer {
+        padding-top: 5px;
+        margin: 0 auto;
+        width: $width;
+        border-top: thin solid $main-border-color;
+    }
+}
+
+.upload-file-form {
+    background: $main-background-color;
+    border: medium solid $main-border-color;
+    padding: 5px;
+
+    @include border-radius(13px);
+}
+
+#file-list {
+    background: $main-background-color;
+    border: medium solid $main-border-color;
+    padding: 5px;
+    margin-top: 5px;
+
+    @include border-radius(13px);
+
+    h3 {
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .uploaded-file {
+        border-bottom: thin dotted $main-border-color;
+        /*border-left: thin dotted $main-border-color;*/
+        margin-left: 10px;
+        margin-bottom: 7px;
+        padding: 5px;
+        @include border-bottom-left-radius(5px);
+
+        .description {
+            border-top: thin dotted $main-border-color;
+            margin-left: 10px;
+            padding: 5px;
+        }
+        
+    }
+}

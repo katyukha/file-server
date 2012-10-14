@@ -1,9 +1,15 @@
 from bottle import run
 from bottle import mount
 from bottle import debug
+
+from controllers import *
 from apps.uploader import uploader
 
 mount('/uploader', uploader, name = 'uploader')
+
+
+
+
 
 if __name__=='__main__':
     import argparse

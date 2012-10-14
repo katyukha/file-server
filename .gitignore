@@ -3,3 +3,5 @@
 *.pyc
 *.db
 uploads/*
+static/.sass-cache*
+static/stylesheets*

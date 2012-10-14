@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 import bottle
 from bottle import route, run
 from bottle import mako_view as view
@@ -53,7 +52,10 @@ def upload(rdb):
         rdb.rpush('file:global:ids', id)
         return { 'filename'    : filename,
                  'filelen'     : filelen,
-                 'file_loaded' : True }
+                 'fileid'      : id,
+                 'file_loaded' : True,
+                 'url'         : uploader.get_url,
+               }
 
     return {'file_loaded' : False}
 

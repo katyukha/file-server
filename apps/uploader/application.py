@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 import bottle
 import bottle.ext.redis
 
